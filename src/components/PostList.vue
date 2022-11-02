@@ -1,12 +1,18 @@
 <template>
-  <div>
+  <div v-if="posts.length > 0">
     <h3>Users List</h3>
     <post-item 
       v-for="post in posts" 
-      v-bind:key="post.id"
+      :key="post.id"
       :post="post"
+      @remove="$emit('remove', post)"
     />
   </div>
+  <h2 v-else style="color: red">
+    List of posts is empty
+  </h2>
+    
+  
 </template>
 
 <script>

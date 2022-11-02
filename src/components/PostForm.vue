@@ -1,16 +1,12 @@
 <template>
   <form @submit.prevent>
     <h4>Create post</h4>
-    <input
+    <my-input
       v-model="post.title"
-      class="input"
-      type="text"
       placeholder="Name"
     />
-    <input
+    <my-input
       v-model="post.body"
-      class="input"
-      type="text"
       placeholder="Description"
     />
     <my-button 
@@ -27,8 +23,8 @@ export default {
   data() {
     return {
       post: {
-        title: 'eee',
-        body: 'rrr',
+        title: '',
+        body: '',
       },
     }
     
@@ -48,13 +44,6 @@ export default {
 </script>
 
 <style scoped>
-.input {
-  width: 100%;
-  border: 1px solid teal;
-  padding: 10px 15px;
-  margin-top: 10px;
-}
-
 form {
   display: flex;
   flex-direction: column;

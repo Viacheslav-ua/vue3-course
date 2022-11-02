@@ -1,7 +1,14 @@
 <template>
   <div class="app">
-    <post-form @create="createPost"/>
-    <post-list :posts="posts"/>
+    <h1>Post Page</h1>
+    <my-button
+      class="btn__create"
+      @click="showDialog"
+    >Create Post</my-button>
+    <my-dialog v-model:show="dialogVisible">
+      <post-form @create="createPost"/>
+    </my-dialog>
+    <post-list :posts="posts" @remove="removePost"/>
   </div>
 </template>
 
@@ -34,13 +41,21 @@ export default {
           body: "JavaScript is universal programing langveg3",
         },
       ],
+      dialogVisible: false,
     };
   },
   methods: {
     createPost(post) {
       this.posts.push(post)
+      this.dialogVisible = false
     },
-    
+    removePost(post) {
+      this.posts = this.posts.filter(item => item.id !== post.id)
+
+    },
+    showDialog() {
+      this.dialogVisible = true
+    },
   },
 }
 </script>
@@ -54,6 +69,10 @@ export default {
 
 .app {
   padding: 10px;
+}
+
+.btn__create {
+  margin: 10px 0;
 }
 </style>
 
